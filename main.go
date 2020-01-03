@@ -48,8 +48,8 @@ func main() {
 		log.Fatalln("ProcFS is only supported on linux!")
 	}
 	args := os.Args
-	if len(args) != 2 {
-		log.Fatalln("Usage: udp-procfs-exporter <processname>")
+	if len(args) != 3 {
+		log.Fatalln("Usage: udp-procfs-exporter <processname> <port to expose for scraping>")
 	}
 
 	findPIDByName(args[1])
@@ -57,7 +57,7 @@ func main() {
 		log.Fatalln("Unable to find proc with the name: " + targetProcName)
 	}
 	fmt.Println("UDP Procfs Exporter started, watching PID " + targetPID)
-	go serveHTTP(":8125", "/metrics")
+	go serveHTTP(":"+args[2], "/metrics")
 	watchUDPBuffers(0, 0)
 }
 
