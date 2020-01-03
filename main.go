@@ -24,14 +24,14 @@ var (
 	targetPID       string
 	udpBufferQueued = prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Name: "statsd_exporter_udp_buffer_queued",
+			Name: "udp_exporter_buffer_queued",
 			Help: "The number of queued UDP messages in the linux buffer.",
 		},
 		[]string{"protocol"},
 	)
 	udpBufferDropped = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Name: "statsd_exporter_udp_buffer_dropped",
+			Name: "udp_exporter_buffer_dropped",
 			Help: "The number of dropped UDP messages in the linux buffer",
 		},
 		[]string{"protocol"},
