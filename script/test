@@ -1,0 +1,9 @@
+docker build -f Dockerfile -t udp-procfs-exporter .
+docker run --name "udp-procfs-exporter-test" -d -p 8125:8125 udp-procfs-exporter sh ./simple-entrypoint.sh
+
+sleep 10
+
+curl localhost:8125/metrics
+
+docker kill udp-procfs-exporter-test
+docker rm udp-procfs-exporter-test
